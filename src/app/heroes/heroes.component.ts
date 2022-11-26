@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Hero } from './hero';
+import {Hero, HEROES} from '../hero';
 
 @Component({
   selector: 'app-heroes',
@@ -7,8 +7,10 @@ import { Hero } from './hero';
   styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent {
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm',
-  };
+  heroes: Hero[] = HEROES;
+  selectedHero: Hero | undefined;
+
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
 }
