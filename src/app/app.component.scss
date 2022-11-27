@@ -26,3 +26,15 @@
     }
   }
 }
+
+.body {
+  display: flex;
+
+  .content {
+    width: 70%;
+  }
+
+  .messages {
+    width: 30%;
+  }
+}

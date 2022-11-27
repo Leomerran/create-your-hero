@@ -6,6 +6,7 @@
 
   &__list {
     display: flex;
+    align-items: center;
 
     &-item {
       flex: 1;
@@ -41,10 +42,45 @@
         align-self: center;
         color: white;
 
-        &:hover{
+        &:hover {
           color: #405061;
         }
       }
     }
+
+    &-delete-item {
+      &:hover {
+        cursor: pointer;
+        background-color: #525252;
+        color: white;
+        border-color: #525252;
+        border-radius: 3px;
+      }
+    }
   }
 }
+
+.new-hero {
+  display: flex;
+  align-items: center;
+
+  &__label {
+    margin-right: 1rem;
+  }
+
+  &__input {
+    height: fit-content;
+  }
+
+  &__add-button {
+    padding-inline: 1rem;
+    font-size: 1rem;
+    margin-left: 2rem;
+
+    &:hover {
+      color: white;
+      background-color: #42545C;
+    }
+  }
+}
+
