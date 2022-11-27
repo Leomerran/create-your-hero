@@ -1,0 +1,49 @@
+.hero-search {
+  &__label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+    text-align: center;
+  }
+
+  &__input {
+    padding: .5rem;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    display: block;
+
+    &:focus {
+      outline: #336699 auto 1px;
+    }
+  }
+
+  &__results {
+    margin-top: 0;
+    padding-left: 0;
+
+    &-item {
+      list-style-type: none;
+    }
+
+    &-item, &-item-name {
+      border-bottom: 1px solid gray;
+      border-left: 1px solid gray;
+      border-right: 1px solid gray;
+      display: inline-block;
+      width: 100%;
+      max-width: 600px;
+      padding: .5rem;
+      box-sizing: border-box;
+      text-decoration: none;
+      color: black;
+    }
+
+    &-item, &-item-name:hover {
+      background-color: #435A60;
+      color: white;
+    }
+  }
+}

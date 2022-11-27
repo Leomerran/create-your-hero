@@ -1,0 +1,40 @@
+.title {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+
+  &__item {
+    padding: 1rem;
+    text-decoration: none;
+    margin-top: 5vh;
+    margin-inline: 1vw;
+    background-color: #e8e8e8;
+    color: #3d3d3d;
+    border-radius: 4px;
+
+    &:hover {
+      color: white;
+      background-color: #42545C;
+    }
+
+    &:active {
+      background-color: black;
+    }
+  }
+}
+
+.body {
+  display: flex;
+
+  .content {
+    width: 70%;
+  }
+
+  .messages {
+    width: 30%;
+  }
+}
