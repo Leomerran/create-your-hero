@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Hero } from '../hero';
+import { Hero, TYPE } from '../hero';
 import { HeroService } from '../services/hero.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-creation',
@@ -8,18 +9,23 @@ import { HeroService } from '../services/hero.service';
   styleUrls: ['./hero-creation.component.scss'],
 })
 export class HeroCreationComponent {
-  newHero: Hero = {
-    id: -1,
-    name: '',
-  };
+  readonly TYPE = TYPE;
+  newHeroName = '';
+  newHeroType = this.TYPE.SOLDAT;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService, private router: Router) {}
 
   add(): void {
-    this.newHero.name = this.newHero.name.trim();
-    if (!this.newHero.name) {
+    this.newHeroName = this.newHeroName.trim();
+    if (!this.newHeroName) {
       return;
     }
-    this.heroService.addHero(this.newHero).subscribe();
+    this.heroService
+      .addHero({ name: this.newHeroName, type: this.newHeroType } as Hero)
+      .subscribe(() => {
+        this.router
+          .navigateByUrl('/heroes')
+          .then(() => console.log('Navigation succeed'));
+      });
   }
 }

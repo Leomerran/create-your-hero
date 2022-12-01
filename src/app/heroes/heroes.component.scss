@@ -1,86 +1,71 @@
-.heroes {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
+.title {
+  text-align: center;
+}
 
-  &__list {
-    display: flex;
-    align-items: center;
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    &-item {
-      flex: 1;
-      background-color: #84a4c6;
-      margin: 0.5em;
-      border-radius: 4px;
-      height: fit-content;
-      text-decoration: none;
+  .heroes {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
 
-      &:hover {
-        color: #2c3a41;
-        background-color: #e6e6e6;
-        left: .1em;
-      }
+    &__list {
+      display: flex;
+      align-items: center;
 
-      &:active {
-        background-color: #525252;
-        color: #fafafa;
-      }
-
-      > .badge {
-        display: inline-block;
-        font-size: small;
-        color: white;
-        padding: 5%;
-        background-color: #405061;
-        line-height: 1em;
-        margin-right: .8em;
-        border-radius: 4px 0 0 4px;
-      }
-
-      > .name {
-        align-self: center;
-        color: white;
+      &-item {
+        flex: 1;
+        background-color: #84a4c6;
+        margin: 0.5em;
+        border-radius: 4px;
+        height: fit-content;
+        text-decoration: none;
 
         &:hover {
-          color: #405061;
+          color: #2c3a41;
+          background-color: #e6e6e6;
+          left: .1em;
+        }
+
+        &:active {
+          background-color: #525252;
+          color: #fafafa;
+        }
+
+        > .badge {
+          display: inline-block;
+          font-size: small;
+          color: white;
+          padding: 5%;
+          background-color: #405061;
+          line-height: 1em;
+          margin-right: .8em;
+          border-radius: 4px 0 0 4px;
+        }
+
+        > .name {
+          align-self: center;
+          color: white;
+
+          &:hover {
+            color: #405061;
+          }
+        }
+      }
+
+      &-delete-item {
+        &:hover {
+          cursor: pointer;
+          background-color: #525252;
+          color: white;
+          border-color: #525252;
+          border-radius: 3px;
         }
       }
     }
-
-    &-delete-item {
-      &:hover {
-        cursor: pointer;
-        background-color: #525252;
-        color: white;
-        border-color: #525252;
-        border-radius: 3px;
-      }
-    }
   }
 }
-
-.new-hero {
-  display: flex;
-  align-items: center;
-
-  &__label {
-    margin-right: 1rem;
-  }
-
-  &__input {
-    height: fit-content;
-  }
-
-  &__add-button {
-    padding-inline: 1rem;
-    font-size: 1rem;
-    margin-left: 2rem;
-
-    &:hover {
-      color: white;
-      background-color: #42545C;
-    }
-  }
-}
-
