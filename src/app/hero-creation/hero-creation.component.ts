@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TYPE } from '../hero';
+import { HERO_PROPERTY, TYPES, WEAPONS } from '../hero';
 import { HeroService } from '../services/hero.service';
 import { Router } from '@angular/router';
 import { FormGroupService } from '../services/form-group.service';
@@ -11,7 +11,8 @@ import { FormGroupService } from '../services/form-group.service';
   providers: [FormGroupService],
 })
 export class HeroCreationComponent {
-  readonly TYPE = TYPE;
+  readonly TYPE = TYPES;
+  readonly WEAPON = WEAPONS;
 
   constructor(
     private heroService: HeroService,
@@ -20,11 +21,23 @@ export class HeroCreationComponent {
   ) {}
 
   get nameControl() {
-    return this.formGroupService.nameControl;
+    return this.formGroupService.getFormControl(HERO_PROPERTY.NAME);
+  }
+
+  get heightControl() {
+    return this.formGroupService.getFormControl(HERO_PROPERTY.HEIGHT);
+  }
+
+  get sizeControl() {
+    return this.formGroupService.getFormControl(HERO_PROPERTY.SIZE);
   }
 
   get typeControl() {
-    return this.formGroupService.typeControl;
+    return this.formGroupService.getFormControl(HERO_PROPERTY.TYPE);
+  }
+
+  get weaponControl() {
+    return this.formGroupService.getFormControl(HERO_PROPERTY.WEAPON);
   }
 
   get heroForm() {
@@ -32,10 +45,8 @@ export class HeroCreationComponent {
   }
 
   add(): void {
-    this.formGroupService.nameControl.patchValue(
-      this.formGroupService.nameControl.value.trim()
-    );
-    if (!this.formGroupService.nameControl.value) {
+    this.nameControl.patchValue(this.nameControl.value.trim());
+    if (!this.nameControl.value) {
       return;
     }
 

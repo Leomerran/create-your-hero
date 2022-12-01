@@ -1,22 +1,85 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Hero, TYPE } from '../hero';
+import { Hero, TYPES, WEAPONS } from '../hero';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const heroes = [
-      { id: 1, name: 'Tornado', type: TYPE.SOLDAT },
-      { id: 2, name: 'Dr. Nice', type: TYPE.SOIGNEUR },
-      { id: 3, name: 'Bombasto', type: TYPE.SOLDAT },
-      { id: 4, name: 'Celeritas', type: TYPE.ARCHER },
-      { id: 5, name: 'Magneta', type: TYPE.MAGE },
-      { id: 6, name: 'RubberMan', type: TYPE.SOLDAT },
-      { id: 7, name: 'Dynama', type: TYPE.ARCHER },
-      { id: 8, name: 'Dr. IQ', type: TYPE.MAGE },
-      { id: 9, name: 'Magma', type: TYPE.MAGE },
+    const heroes: Hero[] = [
+      {
+        id: 1,
+        name: 'Tornado',
+        height: 194,
+        size: 98.4,
+        type: TYPES.SOLDAT,
+        weapon: WEAPONS.EPEE,
+      },
+      {
+        id: 2,
+        name: 'Dr. Nice',
+        height: 176,
+        size: 82.2,
+        type: TYPES.SOIGNEUR,
+        weapon: WEAPONS.DOLIPRANE,
+      },
+      {
+        id: 3,
+        name: 'Bombasto',
+        height: 181,
+        size: 90.1,
+        type: TYPES.SOLDAT,
+        weapon: WEAPONS.EPEE,
+      },
+      {
+        id: 4,
+        name: 'Celeritas',
+        height: 168,
+        size: 76.7,
+        type: TYPES.ARCHER,
+        weapon: WEAPONS.ARC,
+      },
+      {
+        id: 5,
+        name: 'Magneta',
+        height: 190,
+        size: 84.1,
+        type: TYPES.MAGE,
+        weapon: WEAPONS.SCEPTRE,
+      },
+      {
+        id: 6,
+        name: 'RubberMan',
+        height: 185,
+        size: 86.5,
+        type: TYPES.SOLDAT,
+        weapon: WEAPONS.DAGUE,
+      },
+      {
+        id: 7,
+        name: 'Dynama',
+        height: 133,
+        size: 58.3,
+        type: TYPES.ARCHER,
+        weapon: WEAPONS.ARBALETE,
+      },
+      {
+        id: 8,
+        name: 'Dr. IQ',
+        height: 178,
+        size: 74.0,
+        type: TYPES.MAGE,
+        weapon: WEAPONS.SCEPTRE,
+      },
+      {
+        id: 9,
+        name: 'Magma',
+        height: 185,
+        size: 80.9,
+        type: TYPES.MAGE,
+        weapon: WEAPONS.SCEPTRE,
+      },
     ];
     return { heroes };
   }

@@ -1,9 +1,32 @@
 <div *ngIf="id">
   <h2>{{nameControl.value | uppercase}} Details</h2>
-  <div><span>id: </span>{{id}}</div>
+  <div><span class="input">id: </span>{{id}}</div>
   <div>
-    <label for="hero-name" class="name-input">Hero name: </label>
-    <input [formControl]="nameControl" class="name-input" id="hero-name" placeholder="name">
+    <label class="input" for="hero-name">Hero name: </label>
+    <input [formControl]="nameControl" class="input" id="hero-name" placeholder="name">
+  </div>
+  <div>
+    <label class="input" for="hero-height">Hero height: </label>
+    <input [formControl]="heightControl" class="input" id="hero-height" placeholder="0" type="number">
+  </div>
+  <div>
+    <label class="input" for="hero-size">Hero size: </label>
+    <input [formControl]="sizeControl" class="input" id="hero-size" pattern="^\d*(\.\d{0,1})?$" placeholder="0.0"
+           type="number">
+  </div>
+  <div>
+    <label class="input" for="hero-type">Hero type: </label>
+    <select [formControl]="typeControl"
+            class="input" id="hero-type">
+      <option *ngFor="let type of TYPE | keyvalue" [value]="type.value">{{type.value}}</option>
+    </select>
+  </div>
+  <div>
+    <label class="input" for="hero-weapon">Hero weapon: </label>
+    <select [formControl]="weaponControl"
+            class="input" id="hero-weapon">
+      <option *ngFor="let weapon of WEAPON | keyvalue" [value]="weapon.value">{{weapon.value}}</option>
+    </select>
   </div>
 
   <button (click)="save()" class="action-button" type="button">save</button>
