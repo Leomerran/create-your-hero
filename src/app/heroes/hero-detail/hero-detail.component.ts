@@ -1,52 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero, TYPE } from '../../hero';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
 import { Location } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroupService } from '../../services/form-group.service';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.scss'],
+  providers: [FormGroupService],
 })
 export class HeroDetailComponent implements OnInit {
-  id: number = -1;
-  heroForm: FormGroup = new FormGroup({
-    name: new FormControl<string>('', Validators.required),
-    type: new FormControl<TYPE | null>(null, Validators.required),
-  });
+  id: number | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
+    private formGroupService: FormGroupService,
     private location: Location
   ) {}
 
   get nameControl() {
-    return this.heroForm.controls['name'];
+    return this.formGroupService.nameControl;
   }
 
   get typeControl() {
-    return this.heroForm.controls['type'];
+    return this.formGroupService.typeControl;
   }
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(this.id).subscribe((hero) => {
-      this.nameControl.patchValue(hero.name);
-      this.typeControl.patchValue(hero.type);
+      this.formGroupService.fillHeroForm(hero);
     });
   }
 
   save(): void {
-    if (this.heroForm.valid) {
-      const hero: Hero = {
-        id: this.id,
-        name: this.nameControl.value,
-        type: this.typeControl.value,
-      };
-      this.heroService.updateHero(hero).subscribe(() => this.goBack());
+    if (this.formGroupService.heroForm.valid && this.id) {
+      this.heroService
+        .updateHero({ ...this.formGroupService.hero, id: this.id })
+        .subscribe(() => this.goBack());
     }
   }
 
