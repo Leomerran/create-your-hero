@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Hero, TYPE } from '../hero';
 import { HeroService } from '../services/hero.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-hero-creation',
@@ -10,18 +11,36 @@ import { Router } from '@angular/router';
 })
 export class HeroCreationComponent {
   readonly TYPE = TYPE;
-  newHeroName = '';
-  newHeroType = this.TYPE.SOLDAT;
+
+  newHeroForm: FormGroup = new FormGroup({
+    name: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    type: new FormControl<TYPE | null>(null, Validators.required),
+  });
 
   constructor(private heroService: HeroService, private router: Router) {}
 
+  get nameControl() {
+    return this.newHeroForm.controls['name'];
+  }
+
+  get typeControl() {
+    return this.newHeroForm.controls['type'];
+  }
+
   add(): void {
-    this.newHeroName = this.newHeroName.trim();
-    if (!this.newHeroName) {
+    this.nameControl.patchValue(this.nameControl.value.trim());
+    if (!this.nameControl.value) {
       return;
     }
+
     this.heroService
-      .addHero({ name: this.newHeroName, type: this.newHeroType } as Hero)
+      .addHero({
+        name: this.nameControl.value,
+        type: this.typeControl.value,
+      } as Hero)
       .subscribe(() => {
         this.router
           .navigateByUrl('/heroes')

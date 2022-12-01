@@ -1,9 +1,9 @@
-<div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
+<div *ngIf="id">
+  <h2>{{nameControl.value | uppercase}} Details</h2>
+  <div><span>id: </span>{{id}}</div>
   <div>
     <label for="hero-name" class="name-input">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name" class="name-input">
+    <input [formControl]="nameControl" class="name-input" id="hero-name" placeholder="name">
   </div>
 
   <button (click)="save()" class="action-button" type="button">save</button>
