@@ -3,9 +3,8 @@
   <input [formControl]="nameControl"
          class="form-control"
          id="name">
-  <div [hidden]="nameControl.valid || nameControl.pristine"
-       class="alert alert-danger">
-    Name is required
+  <div *ngIf="nameControl.errors?.invalidValue && nameControl.dirty" class="alert alert-danger">
+    {{ nameControl.errors?.invalidValue }}
   </div>
 
   <label class="title" for="height">Height (cm)</label>
@@ -49,6 +48,10 @@
   <div [hidden]="weaponControl.valid || typeControl.pristine"
        class="alert alert-danger">
     Weapon is required
+  </div>
+
+  <div *ngIf="heroForm.errors?.invalidValue  && heroForm.dirty" class="alert alert-danger">
+    {{ heroForm.errors?.invalidValue }}
   </div>
 
   <button (click)="add()" *ngIf="heroForm.valid" class="btn-success" type="button">Add hero</button>

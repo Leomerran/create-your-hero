@@ -8,7 +8,7 @@ export enum TYPES {
 export enum WEAPONS {
   EPEE = 'Epée',
   SCEPTRE = 'Sceptre',
-  ARC = 'ARC',
+  ARC = 'Arc',
   ARBALETE = 'Arbalète',
   DAGUE = 'Dague',
   DOLIPRANE = 'Doliprane',

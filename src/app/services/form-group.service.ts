@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Hero, HERO_PROPERTY, TYPES, WEAPONS } from '../hero';
+import {
+  forbiddenNameValidator,
+  heroWeaponValidator,
+} from '../validators.directive';
 
 @Injectable()
 export class FormGroupService {
-  heroForm: FormGroup = new FormGroup({
-    [HERO_PROPERTY.NAME]: new FormControl<string>('', Validators.required),
-    [HERO_PROPERTY.HEIGHT]: new FormControl<number>(0, Validators.required),
-    [HERO_PROPERTY.SIZE]: new FormControl<number>(0, Validators.required),
-    [HERO_PROPERTY.TYPE]: new FormControl<TYPES | null>(
-      null,
-      Validators.required
-    ),
-    [HERO_PROPERTY.WEAPON]: new FormControl<WEAPONS | null>(null),
-  });
+  heroForm: FormGroup = new FormGroup(
+    {
+      [HERO_PROPERTY.NAME]: new FormControl<string>('', [
+        Validators.required,
+        forbiddenNameValidator,
+      ]),
+      [HERO_PROPERTY.HEIGHT]: new FormControl<number>(0, Validators.required),
+      [HERO_PROPERTY.SIZE]: new FormControl<number>(0, Validators.required),
+      [HERO_PROPERTY.TYPE]: new FormControl<TYPES | null>(
+        null,
+        Validators.required
+      ),
+      [HERO_PROPERTY.WEAPON]: new FormControl<WEAPONS | null>(null),
+    },
+    { validators: heroWeaponValidator }
+  );
 
   get hero(): Hero {
     return {
