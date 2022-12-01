@@ -10,13 +10,3 @@
     </button>
   </li>
 </ul>
-
-<div class="new-hero">
-  <label class="new-hero__label" for="new-hero">Hero name: </label>
-  <input #heroName class="new-hero__input" id="new-hero"/>
-
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value=''" class="new-hero__add-button" type="button">
-    Add hero
-  </button>
-</div>

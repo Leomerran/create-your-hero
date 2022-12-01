@@ -1,0 +1,15 @@
+<div class="new-hero">
+  <form #heroForm="ngForm" (ngSubmit)="add()">
+    <label for="name">Name</label>
+    <input #name="ngModel" [(ngModel)]="newHero.name" class="form-control"
+           id="name"
+           name="name" required
+           type="text">
+    <div [hidden]="name.valid || name.pristine"
+         class="alert alert-danger">
+      Name is required
+    </div>
+
+    <button [disabled]="!heroForm.form.valid" class="btn btn-success" type="submit">Add hero</button>
+  </form>
+</div>
