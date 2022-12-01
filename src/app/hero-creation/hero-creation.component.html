@@ -1,29 +1,58 @@
 <div class="new-hero">
-  <form #heroForm="ngForm" (ngSubmit)="add()" class="new-hero__form">
-    <label for="name">Name</label>
-    <input #name="ngModel" [(ngModel)]="newHeroName"
-           class="form-control"
-           id="name"
-           minlength="3"
-           name="name"
-           required>
-    <div [hidden]="name.valid || name.pristine"
-         class="alert alert-danger">
-      Name is required
-    </div>
+  <label class="title" for="name">Name</label>
+  <input [formControl]="nameControl"
+         class="form-control"
+         id="name">
+  <div *ngIf="nameControl.errors?.invalidValue && nameControl.dirty" class="alert alert-danger">
+    {{ nameControl.errors?.invalidValue }}
+  </div>
 
-    <label for="type">Type</label>
-    <select #type="ngModel" [(ngModel)]="newHeroType"
-            class="form-control"
-            id="type"
-            name="type"
-            required>
-      <option *ngFor="let type of TYPE | keyvalue" [value]="type">{{type.value}}</option>
-    </select>
-    <div [hidden]="type.valid || type.pristine" class="alert alert-danger">
-      Type is required
-    </div>
+  <label class="title" for="height">Height (cm)</label>
+  <input [formControl]="heightControl"
+         class="form-control"
+         id="height" type="number">
+  <div [hidden]="heightControl.valid || heightControl.pristine"
+       class="alert alert-danger">
+    Height is required
+  </div>
 
-    <button [disabled]="!heroForm.form.valid" class="btn btn-success" type="submit">Add hero</button>
-  </form>
+  <label class="title" for="size">Size (kg)</label>
+  <input [formControl]="sizeControl"
+         class="form-control"
+         id="size" pattern="^\d*(\.\d{0,1})?$"
+         type="number">
+  <div [hidden]="sizeControl.valid || sizeControl.pristine"
+       class="alert alert-danger">
+    Size is required
+  </div>
+
+  <label class="title" for="type">Type</label>
+  <select [formControl]="typeControl"
+          class="form-control"
+          id="type"
+          name="type">
+    <option *ngFor="let type of TYPE | keyvalue" [value]="type.value">{{type.value}}</option>
+  </select>
+  <div [hidden]="typeControl.valid || typeControl.pristine"
+       class="alert alert-danger">
+    Type is required
+  </div>
+
+  <label class="title" for="weapon">Weapon</label>
+  <select [formControl]="weaponControl"
+          class="form-control"
+          id="weapon"
+          name="weapon">
+    <option *ngFor="let weapon of WEAPON | keyvalue" [value]="weapon.value">{{weapon.value}}</option>
+  </select>
+  <div [hidden]="weaponControl.valid || typeControl.pristine"
+       class="alert alert-danger">
+    Weapon is required
+  </div>
+
+  <div *ngIf="heroForm.errors?.invalidValue  && heroForm.dirty" class="alert alert-danger">
+    {{ heroForm.errors?.invalidValue }}
+  </div>
+
+  <button (click)="add()" *ngIf="heroForm.valid" class="btn-success" type="button">Add hero</button>
 </div>
